@@ -12,25 +12,25 @@ The plugin is distributed via the `.claude-plugin/` directory and installed into
 
 ### Skill-Based Design
 
-Each pipeline stage is a self-contained skill defined in `skills/<name>/SKILL.md`. Skills are markdown-based instructions (no traditional code), except for `feedback-loop` which includes a Python script.
+Each pipeline stage is a self-contained skill defined in `skills/curator-<name>/SKILL.md`. Skills are markdown-based instructions (no traditional code), except for `curator-feedback-loop` which includes a Python script.
 
 **Pipeline order:**
-1. `init` — One-time workspace setup (`playground/` directory tree)
-2. `intake` — Downloads URLs from `inbox.txt` to `00_INBOX/` as markdown. **Only skill with external dependencies** (see below)
-3. `filter` — Grades articles using Admiralty system (A1-F6), routes to `01_PROJECTS/`, `02_DEFER/`, or `03_NOISE/`, generates daily digest in `05_OUTBOX/`
-4. `feedback-loop` — Detects user file movements (implicit feedback) and reads explicit feedback table, updates `SOURCE_REPUTATION.md` and `05_SYSTEM_LEARNINGS.md`
-5. `compile` — Three modes: `ingest` (raw files -> wiki pages), `query` (search wiki), `fix` (resolve maintenance issues)
-6. `lint` — Read-only wiki health scan, writes issues to `WIKI_MAINTENANCE.md`
+1. `curator-init` — One-time workspace setup (`playground/` directory tree)
+2. `curator-intake` — Downloads URLs from `inbox.txt` to `00_INBOX/` as markdown. **Only skill with external dependencies** (see below)
+3. `curator-filter` — Grades articles using Admiralty system (A1-F6), routes to `01_PROJECTS/`, `02_DEFER/`, or `03_NOISE/`, generates daily digest in `05_OUTBOX/`
+4. `curator-feedback-loop` — Detects user file movements (implicit feedback) and reads explicit feedback table, updates `SOURCE_REPUTATION.md` and `05_SYSTEM_LEARNINGS.md`
+5. `curator-compile` — Three modes: `ingest` (raw files -> wiki pages), `query` (search wiki), `fix` (resolve maintenance issues)
+6. `curator-lint` — Read-only wiki health scan, writes issues to `WIKI_MAINTENANCE.md`
 
 ### Config Override System
 
 Skills resolve config by checking user overrides first, then falling back to plugin defaults:
-- Config: `playground/curator-config/<file>.md` overrides `skills/config/<file>.md`
-- Templates: `playground/curator-templates/<file>.md` overrides `skills/config/templates/<file>.md`
+- Config: `playground/curator-config/<file>.md` overrides `skills/curator-config/<file>.md`
+- Templates: `playground/curator-templates/<file>.md` overrides `skills/curator-config/templates/<file>.md`
 
 All skills must implement this resolution pattern. User overrides survive plugin updates; plugin defaults do not.
 
-### Key Config Files (in `skills/config/`)
+### Key Config Files (in `skills/curator-config/`)
 
 - `paths.md` — Canonical path variables for all directories. All skills reference this; never hardcode paths
 - `topics.md` — Filter topic categories AND wiki dimension directories (dual purpose)
@@ -54,7 +54,7 @@ All skills except `intake` are fully self-contained. Intake requires:
 
 ### The Only Python Code
 
-`skills/feedback-loop/track_feedback.py` — Detects file movements by comparing assessment block destinations against actual file locations. Run from project root. Max 5 anomalies per run. This script should not be modified by skill consumers.
+`skills/curator-feedback-loop/track_feedback.py` — Detects file movements by comparing assessment block destinations against actual file locations. Run from project root. Max 5 anomalies per run. This script should not be modified by skill consumers.
 
 ## Development Notes
 

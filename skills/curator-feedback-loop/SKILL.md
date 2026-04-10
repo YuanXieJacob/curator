@@ -1,5 +1,5 @@
 ---
-name: feedback-loop
+name: curator-feedback-loop
 description: The Human-in-the-Loop Coach. Reads quick notes from 04_SUPERVISOR_FEEDBACK.md and runs a python script to monitor physical file movements. Then updates SOURCE_REPUTATION.md and 05_SYSTEM_LEARNINGS.md so the filter can learn.
 ---
 
@@ -10,8 +10,8 @@ Learn from human manual interventions. Uses both explicit feedback (table) and i
 
 ## Prerequisites
 
-Locate the `config/` sibling skill directory (same parent as this skill), then read:
-- `config/paths.md` — resolve all directory paths
+Locate the `curator-config/` sibling skill directory (same parent as this skill), then read:
+- `curator-config/paths.md` — resolve all directory paths
 
 ## Inputs & Execution Steps
 

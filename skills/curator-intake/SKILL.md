@@ -1,5 +1,5 @@
 ---
-name: intake
+name: curator-intake
 description: The Situation Monitor. Reads incoming URLs from inbox.txt or raw links, checks them against the SOURCE_REPUTATION blacklist, and downloads full text into 00_INBOX/ as Markdown files using web-content-fetcher or agent-browser.
 ---
 
@@ -10,8 +10,8 @@ Convert fragile, volatile web URLs into solid, permanent local Markdown files fo
 
 ## Prerequisites
 
-Locate the `config/` sibling skill directory (same parent as this skill), then read:
-1. `config/paths.md` — resolve all directory paths
+Locate the `curator-config/` sibling skill directory (same parent as this skill), then read:
+1. `curator-config/paths.md` — resolve all directory paths
 2. `playground/SOURCE_REPUTATION.md` — load the Blacklist
 
 ## Inputs
@@ -27,7 +27,7 @@ Locate the `config/` sibling skill directory (same parent as this skill), then r
    `playground/00_INBOX/YYYYMMDD_<Title>.md`
    *(Replace YYYYMMDD with today's date, and `<Title>` with a short, sanitized English/pinyin version of the article title).*
 
-4. **File Template**: Follow the template `inbox-file.md` (check `playground/curator-templates/` first, fall back to `config/templates/`).
+4. **File Template**: Follow the template `inbox-file.md` (check `playground/curator-templates/` first, fall back to `curator-config/templates/`).
 
 ## Completion
 Once all URLs are downloaded to `00_INBOX/`, delete the processed URLs from `inbox.txt` so they are not fetched twice.

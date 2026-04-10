@@ -1,5 +1,5 @@
 ---
-name: compile
+name: curator-compile
 description: Wiki Knowledge Compiler. Handles three modes: ingest (process raw/ files + maintain wiki), query (answer questions + optionally promote to topic pages), and fix (clean up WIKI_MAINTENANCE.md issues). Triggered manually.
 ---
 
@@ -81,14 +81,14 @@ Compile high-value source files into the Wiki by extracting entities, concepts, 
 
 ## Prerequisites (MUST read before every run)
 
-Locate the `config/` sibling skill directory (same parent as this skill).
+Locate the `curator-config/` sibling skill directory (same parent as this skill).
 
-0. **Load config**: For `topics.md`, check `playground/curator-config/` first; if not found, use plugin `config/`.
+0. **Load config**: For `topics.md`, check `playground/curator-config/` first; if not found, use plugin `curator-config/`.
 1. `playground/wiki/WIKI_SCHEMA.md` — Wiki constraints and conventions
 2. `playground/wiki/log.md` — Check which files have already been processed
 3. `playground/wiki/index.md` — Understand current wiki structure
-4. `config/topics.md` — Wiki dimension directories
-5. Template `pointer-note.md` — check `playground/curator-templates/` first, fall back to `config/templates/`
+4. `curator-config/topics.md` — Wiki dimension directories
+5. Template `pointer-note.md` — check `playground/curator-templates/` first, fall back to `curator-config/templates/`
 
 ## Inputs
 Scan `playground/wiki/raw/` for `.md` files **not appearing in log.md**.
@@ -120,7 +120,7 @@ Identify from the article:
 - **Data Points**: Specific numbers, comparisons, quotable lines
 
 ### Step 3: Determine Classification
-Determine the file's primary and secondary classifications using the dimension directories from `config/topics.md`.
+Determine the file's primary and secondary classifications using the dimension directories from `curator-config/topics.md`.
 - Primary: Based on the file's core content, choose the most relevant dimension
 - Secondary: If up to 2 strongly related dimensions exist, handle in Step 5
 
@@ -132,7 +132,7 @@ Determine the file's primary and secondary classifications using the dimension d
 ### Step 5: Create Pointer Notes (if secondary classifications exist)
 If there are secondary classifications, create pointer notes in those directories.
 
-Follow the template in `config/templates/pointer-note.md`.
+Follow the template in `curator-config/templates/pointer-note.md`.
 
 ### Step 6: Create Wiki Pages (pre-check required)
 

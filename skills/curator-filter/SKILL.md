@@ -1,5 +1,5 @@
 ---
-name: filter
+name: curator-filter
 description: The Unified Assessor & Router. Reads CURRENT_FOCUS.md, then processes raw Markdown files from 00_INBOX/ — grades them (Admiralty A1-F6), assigns action tags and project mappings for 01-grade articles, moves files into 01/02/03 by topic, and appends a batch report to the daily digest in 05_OUTBOX/.
 ---
 
@@ -10,7 +10,7 @@ Single-pass processing: Grade + Action Tag + Summary + Project Mapping + Routing
 
 ## Prerequisites (MUST read before every run)
 
-Locate the `config/` sibling skill directory (same parent as this skill).
+Locate the `curator-config/` sibling skill directory (same parent as this skill).
 
 ### Step 0a: Read CURRENT_FOCUS.md
 Read `playground/CURRENT_FOCUS.md`.
@@ -29,7 +29,7 @@ Read these files to load cognitive bias corrections, and apply them during gradi
 2. `playground/05_SYSTEM_LEARNINGS.md` — Remember human-corrected rules. These rules take **HIGHER PRIORITY** than default Admiralty grading criteria.
 
 ### Step 0d: Load grading & classification config
-For each file below, check `playground/curator-config/` first; if not found, fall back to plugin `config/`:
+For each file below, check `playground/curator-config/` first; if not found, fall back to plugin `curator-config/`:
 1. `admiralty-system.md` — grading criteria + routing matrix + narrative override
 2. `topics.md` — topic categories
 3. `action-tags.md` — action tag definitions
@@ -82,16 +82,16 @@ Read the full article and understand its core arguments, data, and conclusions. 
 ## Step 2: Evaluate & Classify
 
 Based on your deep reading:
-1. Determine the Admiralty A1-F6 grade (per `config/admiralty-system.md`)
+1. Determine the Admiralty A1-F6 grade (per `curator-config/admiralty-system.md`)
 2. Determine the destination folder (01/02/03) per the routing matrix
-3. Determine the topic category (per `config/topics.md`)
-4. **For 01/02-grade files only**: Determine action tag (per `config/action-tags.md`) and mapped project (from `CURRENT_FOCUS.md`)
+3. Determine the topic category (per `curator-config/topics.md`)
+4. **For 01/02-grade files only**: Determine action tag (per `curator-config/action-tags.md`) and mapped project (from `CURRENT_FOCUS.md`)
 
 ## Step 3: Prepend Assessment Block
 
 At the **very top** of the file (above YAML frontmatter), insert the assessment block.
 
-- Follow the template `assessment-block.md` (check `playground/curator-templates/` first, fall back to `config/templates/`)
+- Follow the template `assessment-block.md` (check `playground/curator-templates/` first, fall back to `curator-config/templates/`)
 - For 01-grade files, also append `action-brief-01.md` (same override logic)
 - For 02-grade files, also append `action-brief-02.md` (same override logic)
 
@@ -114,7 +114,7 @@ Do NOT use Python scripts, AI rewrite, or rm+create to move files. Always `mv`.
 
 **CRITICAL REPORTING RULE**: Every physically moved file in this batch MUST appear in the report. The destination path in the report MUST exactly match the actual post-mv physical path and filename. If graded as D/E noise in the report, the file MUST physically be in `03_NOISE/`, never in the wrong folder.
 
-Follow the template `daily-digest.md` (check `playground/curator-templates/` first, fall back to `config/templates/`).
+Follow the template `daily-digest.md` (check `playground/curator-templates/` first, fall back to `curator-config/templates/`).
 
 ---
 

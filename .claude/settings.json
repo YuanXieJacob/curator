@@ -1,0 +1,19 @@
+{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://api.minimaxi.com/anthropic",
+    "ANTHROPIC_AUTH_TOKEN": "sk-cp-0V46ZNha7zL232vUfwC1axM-11-bCYYJ33noo8Pk94yOdwe6bjfWL3zOedpDkGPXnwMiQQuMevLEoBEAQf3dJDLi0E_4cVRa_-332B3-AO3D1jon5drKySk",
+    "API_TIMEOUT_MS": "3000000",
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": 1,
+    "ANTHROPIC_MODEL": "MiniMax-M2.7",
+    "ANTHROPIC_SMALL_FAST_MODEL": "MiniMax-M2.7",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "MiniMax-M2.7",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "MiniMax-M2.7",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "MiniMax-M2.7"
+  },
+  "enabledPlugins": {
+    "document-skills@anthropic-agent-skills": true,
+    "example-skills@anthropic-agent-skills": true,
+    "curator@curator-marketplace": true
+  },
+  "language": "chinese_CN"
+}

@@ -57,7 +57,7 @@ Then initialize your workspace:
 
 The plugin works **out of the box** with sensible defaults. All customization is optional.
 
-### Plugin Defaults (in `skills/config/`)
+### Plugin Defaults (in `skills/curator-config/`)
 
 | File | What It Controls |
 |------|-----------------|
@@ -73,16 +73,16 @@ To customize any config, copy it to your project and edit:
 
 ```bash
 # Override topics
-cp <plugin>/skills/config/topics.md playground/curator-config/topics.md
+cp <plugin>/skills/curator-config/topics.md playground/curator-config/topics.md
 
 # Override a template
-cp <plugin>/skills/config/templates/daily-digest.md playground/curator-templates/daily-digest.md
+cp <plugin>/skills/curator-config/templates/daily-digest.md playground/curator-templates/daily-digest.md
 ```
 
 | Override Location | Overrides |
 |------------------|-----------|
-| `playground/curator-config/<file>.md` | `skills/config/<file>.md` |
-| `playground/curator-templates/<file>.md` | `skills/config/templates/<file>.md` |
+| `playground/curator-config/<file>.md` | `skills/curator-config/<file>.md` |
+| `playground/curator-templates/<file>.md` | `skills/curator-config/templates/<file>.md` |
 
 Rule: **file exists → use it. Missing → use plugin default.**
 

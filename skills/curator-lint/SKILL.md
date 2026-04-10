@@ -1,5 +1,5 @@
 ---
-name: lint
+name: curator-lint
 description: Wiki Health Inspector. Manually triggered. Performs full wiki health scan (contradictions/orphans/missing pages/thin pages/stale pages) and writes problems to WIKI_MAINTENANCE.md for compile fix to consume.
 ---
 
@@ -12,10 +12,10 @@ Periodic full scan of Wiki health. Discovers issues and writes them to `WIKI_MAI
 
 ## Prerequisites
 
-Locate the `config/` sibling skill directory (same parent as this skill), then:
+Locate the `curator-config/` sibling skill directory (same parent as this skill), then:
 1. `playground/wiki/WIKI_SCHEMA.md`
 2. `playground/wiki/index.md`
-3. `topics.md` — check `playground/curator-config/` first; if not found, use plugin `config/`
+3. `topics.md` — check `playground/curator-config/` first; if not found, use plugin `curator-config/`
 
 ## Trigger
 ```

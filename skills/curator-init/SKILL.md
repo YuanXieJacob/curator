@@ -1,5 +1,5 @@
 ---
-name: init
+name: curator-init
 description: Initialize the Curator workspace. Creates the playground/ directory structure, configuration files, and wiki scaffold. Run this once when setting up a new project.
 ---
 
@@ -54,7 +54,7 @@ mkdir -p playground/curator-templates
 
 ### Step 3: Create configuration files
 
-Locate the `config/` sibling skill directory, then read the templates directory at the plugin root (`../templates/` relative to the skills directory). Use those templates to create the config files.
+Locate the `curator-config/` sibling skill directory, then read the templates directory at the plugin root (`../templates/` relative to the skills directory). Use those templates to create the config files.
 
 If templates are not found, create the files with these defaults:
 
@@ -119,7 +119,7 @@ Move files physically to let the AI learn:
 ```
 
 **playground/wiki/WIKI_SCHEMA.md:**
-Read the template from the plugin's templates directory. If not found, create a minimal version with the core rules from `config/topics.md`.
+Read the template from the plugin's templates directory. If not found, create a minimal version with the core rules from `curator-config/topics.md`.
 
 **playground/wiki/index.md:**
 ```markdown
@@ -176,8 +176,8 @@ Next steps:
 4. Run /curator:filter to grade and route them
 
 Customization (optional):
-- To override topics: copy config/topics.md to playground/curator-config/topics.md and edit
-- To override templates: copy any file from config/templates/ to playground/curator-templates/ and edit
+- To override topics: copy curator-config/topics.md to playground/curator-config/topics.md and edit
+- To override templates: copy any file from curator-config/templates/ to playground/curator-templates/ and edit
 - Your overrides survive plugin updates. Plugin defaults are used for anything not overridden.
 
 Dependencies (install separately):
