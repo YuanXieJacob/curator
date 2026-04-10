@@ -2,7 +2,7 @@
   "name": "curator-marketplace",
   "description": "LLM content curation pipeline — intake, grade, compile, lint, learn",
   "owner": {
-    "name": "Jacob Yuan",
+    "name": "Jacob Xie",
     "url": "https://github.com/YuanXieJacob"
   },
   "plugins": [
