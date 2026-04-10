@@ -12,6 +12,11 @@ Single-pass processing: Grade + Action Tag + Summary + Project Mapping + Routing
 
 Locate the `config/` sibling skill directory (same parent as this skill).
 
+### Step 0: Load config (with local overrides)
+1. Check if `playground/curator-overrides.md` exists.
+2. If yes, read it. Its `## Topics`, `## Action Tags`, and `## Admiralty System` sections override the corresponding plugin config files.
+3. For any section NOT present in overrides, read the plugin default: `config/topics.md`, `config/action-tags.md`, `config/admiralty-system.md`.
+
 ### Step 0a: Read CURRENT_FOCUS.md
 Read `playground/CURRENT_FOCUS.md`.
 - If file does not exist, STOP and ask the user to create it.

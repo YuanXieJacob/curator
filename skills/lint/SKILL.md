@@ -12,10 +12,11 @@ Periodic full scan of Wiki health. Discovers issues and writes them to `WIKI_MAI
 
 ## Prerequisites
 
-Locate the `config/` sibling skill directory (same parent as this skill), then read:
+Locate the `config/` sibling skill directory (same parent as this skill), then:
+0. **Load config with overrides**: If `playground/curator-overrides.md` exists, its `## Topics` section overrides `config/topics.md`.
 1. `playground/wiki/WIKI_SCHEMA.md`
 2. `playground/wiki/index.md`
-3. `config/topics.md` — for dimension directory list
+3. `config/topics.md` — for dimension directory list (unless overridden in step 0)
 
 ## Trigger
 ```

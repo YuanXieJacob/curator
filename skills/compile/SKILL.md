@@ -83,6 +83,7 @@ Compile high-value source files into the Wiki by extracting entities, concepts, 
 
 Locate the `config/` sibling skill directory (same parent as this skill).
 
+0. **Load config with overrides**: If `playground/curator-overrides.md` exists, its `## Topics` section overrides `config/topics.md`.
 1. `playground/wiki/WIKI_SCHEMA.md` — Wiki constraints and conventions
 2. `playground/wiki/log.md` — Check which files have already been processed
 3. `playground/wiki/index.md` — Understand current wiki structure
