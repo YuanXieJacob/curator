@@ -27,7 +27,7 @@ Locate the `config/` sibling skill directory (same parent as this skill), then r
    `playground/00_INBOX/YYYYMMDD_<Title>.md`
    *(Replace YYYYMMDD with today's date, and `<Title>` with a short, sanitized English/pinyin version of the article title).*
 
-4. **File Template**: Follow the template defined in `config/templates/inbox-file.md`.
+4. **File Template**: Follow the template `inbox-file.md` (check `playground/curator-templates/` first, fall back to `config/templates/`).
 
 ## Completion
 Once all URLs are downloaded to `00_INBOX/`, delete the processed URLs from `inbox.txt` so they are not fetched twice.

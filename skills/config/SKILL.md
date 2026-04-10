@@ -1,47 +1,96 @@
 ---
 name: config
-description: Shared configuration hub for all curator skills. Not invoked directly — other skills read files from this directory to load paths, topics, action tags, templates, and grading standards. Supports local overrides via playground/curator-overrides.md.
+description: Shared configuration hub for all curator skills. Not invoked directly — other skills read files from this directory to load paths, topics, action tags, templates, and grading standards. Supports optional local overrides that survive plugin updates.
 ---
 
 # Curator Config (Shared Configuration Hub)
 
 This is NOT an executable skill. It is a configuration directory that all other curator skills reference.
 
-## Config Resolution Order (IMPORTANT)
+The plugin works **out of the box** with the defaults in this directory. Users can optionally override any config file or template by placing a copy in their project — no overrides are required.
 
-All curator skills follow this priority when loading configuration:
+## Override System
 
-1. **`playground/curator-overrides.md`** — User's local overrides (HIGHEST PRIORITY)
-2. **`config/*.md` files** — Plugin defaults (this directory)
+Simple rule: **file exists in user's project → use it. Missing → use plugin default.**
 
-If `playground/curator-overrides.md` exists, its sections override matching plugin defaults. Any section NOT present in overrides falls back to the plugin default.
+### Config Overrides
 
-### Override Section Mapping
+| Plugin Default | User Override (optional) |
+|---------------|------------------------|
+| `config/paths.md` | `playground/curator-config/paths.md` |
+| `config/topics.md` | `playground/curator-config/topics.md` |
+| `config/action-tags.md` | `playground/curator-config/action-tags.md` |
+| `config/admiralty-system.md` | `playground/curator-config/admiralty-system.md` |
 
-| Override Section Header | Overrides Plugin File |
-|------------------------|----------------------|
-| `## Topics` | `config/topics.md` |
-| `## Action Tags` | `config/action-tags.md` |
-| `## Paths` | `config/paths.md` |
-| `## Admiralty System` | `config/admiralty-system.md` |
+### Template Overrides
 
-Templates (`config/templates/`) are not overridable via this mechanism. To customize templates, copy them into your project's `.claude/skills/` and modify there.
+| Plugin Default | User Override (optional) |
+|---------------|------------------------|
+| `config/templates/assessment-block.md` | `playground/curator-templates/assessment-block.md` |
+| `config/templates/action-brief-01.md` | `playground/curator-templates/action-brief-01.md` |
+| `config/templates/action-brief-02.md` | `playground/curator-templates/action-brief-02.md` |
+| `config/templates/daily-digest.md` | `playground/curator-templates/daily-digest.md` |
+| `config/templates/inbox-file.md` | `playground/curator-templates/inbox-file.md` |
+| `config/templates/pointer-note.md` | `playground/curator-templates/pointer-note.md` |
 
-### Loading Pattern for Skills
+### How to Customize
+
+1. Copy the file you want to change from the plugin to your project:
+   ```bash
+   # Override topics
+   mkdir -p playground/curator-config
+   cp <plugin>/skills/config/topics.md playground/curator-config/topics.md
+   # Edit playground/curator-config/topics.md
+   
+   # Override a template
+   mkdir -p playground/curator-templates
+   cp <plugin>/skills/config/templates/daily-digest.md playground/curator-templates/daily-digest.md
+   # Edit playground/curator-templates/daily-digest.md
+   ```
+2. Done. Plugin updates will replace the defaults, but your copies are untouched.
+3. To revert: just delete the override file.
+
+### Loading Pattern (for all skills)
 
 ```
-1. Read playground/curator-overrides.md (if it exists)
-2. For each config area needed:
-   - If the matching section exists in overrides → use it
-   - Otherwise → read the plugin's config/ file
+def resolve_config(filename):
+    if exists("playground/curator-config/{filename}"):
+        return read("playground/curator-config/{filename}")
+    else:
+        return read("config/{filename}")  # plugin default
+
+def resolve_template(filename):
+    if exists("playground/curator-templates/{filename}"):
+        return read("playground/curator-templates/{filename}")
+    else:
+        return read("config/templates/{filename}")  # plugin default
 ```
+
+### What Survives Plugin Updates
+
+| Category | Location | Survives? |
+|----------|----------|-----------|
+| **User data (accumulated)** | | |
+| Active projects & signals | `playground/CURRENT_FOCUS.md` | Yes |
+| Domain reputation | `playground/SOURCE_REPUTATION.md` | Yes |
+| Learned filter rules | `playground/05_SYSTEM_LEARNINGS.md` | Yes |
+| Human feedback | `playground/04_SUPERVISOR_FEEDBACK.md` | Yes |
+| All articles | `playground/00_INBOX/` through `05_OUTBOX/` | Yes |
+| Obsidian wiki | `playground/wiki/` | Yes |
+| **User overrides (optional)** | | |
+| Config overrides | `playground/curator-config/` | Yes |
+| Template overrides | `playground/curator-templates/` | Yes |
+| **Plugin files** | | |
+| Skill logic | `skills/*/SKILL.md` | No (updated) |
+| Default config | `config/*.md` | No (updated) |
+| Default templates | `config/templates/` | No (updated) |
 
 ## Contents
 
 | File | Purpose | Used By |
 |------|---------|---------|
-| `paths.md` | All directory paths (single source of truth) | All skills |
-| `topics.md` | Topic categories + Wiki dimension directories | filter, compile |
+| `paths.md` | All directory paths | All skills |
+| `topics.md` | Topic categories + Wiki dimension directories | filter, compile, lint |
 | `action-tags.md` | Action tag definitions | filter |
-| `admiralty-system.md` | Source reliability + Information credibility grading | filter |
+| `admiralty-system.md` | Grading criteria + routing matrix | filter |
 | `templates/` | Reusable markdown templates | filter, compile, intake |

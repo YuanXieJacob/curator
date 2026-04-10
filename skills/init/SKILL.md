@@ -48,6 +48,8 @@ Continue? [y/N]
 ```bash
 mkdir -p playground/{00_INBOX,01_PROJECTS_AND_RESOURCES,02_DEFER,03_NOISE,05_OUTBOX}
 mkdir -p playground/wiki/{raw,entities/tools,entities/people,entities/companies,concepts,topics}
+mkdir -p playground/curator-config
+mkdir -p playground/curator-templates
 ```
 
 ### Step 3: Create configuration files
@@ -172,6 +174,11 @@ Next steps:
 2. Paste URLs into playground/inbox.txt
 3. Run /curator:intake to download articles
 4. Run /curator:filter to grade and route them
+
+Customization (optional):
+- To override topics: copy config/topics.md to playground/curator-config/topics.md and edit
+- To override templates: copy any file from config/templates/ to playground/curator-templates/ and edit
+- Your overrides survive plugin updates. Plugin defaults are used for anything not overridden.
 
 Dependencies (install separately):
 - web-content-fetcher skill (for intake URL downloading)

@@ -12,11 +12,6 @@ Single-pass processing: Grade + Action Tag + Summary + Project Mapping + Routing
 
 Locate the `config/` sibling skill directory (same parent as this skill).
 
-### Step 0: Load config (with local overrides)
-1. Check if `playground/curator-overrides.md` exists.
-2. If yes, read it. Its `## Topics`, `## Action Tags`, and `## Admiralty System` sections override the corresponding plugin config files.
-3. For any section NOT present in overrides, read the plugin default: `config/topics.md`, `config/action-tags.md`, `config/admiralty-system.md`.
-
 ### Step 0a: Read CURRENT_FOCUS.md
 Read `playground/CURRENT_FOCUS.md`.
 - If file does not exist, STOP and ask the user to create it.
@@ -34,9 +29,10 @@ Read these files to load cognitive bias corrections, and apply them during gradi
 2. `playground/05_SYSTEM_LEARNINGS.md` — Remember human-corrected rules. These rules take **HIGHER PRIORITY** than default Admiralty grading criteria.
 
 ### Step 0d: Load grading & classification config
-1. `config/admiralty-system.md` — grading criteria + routing matrix + narrative override
-2. `config/topics.md` — topic categories
-3. `config/action-tags.md` — action tag definitions
+For each file below, check `playground/curator-config/` first; if not found, fall back to plugin `config/`:
+1. `admiralty-system.md` — grading criteria + routing matrix + narrative override
+2. `topics.md` — topic categories
+3. `action-tags.md` — action tag definitions
 
 ## Inputs
 Read `.md` files from `playground/00_INBOX/`.
@@ -95,9 +91,9 @@ Based on your deep reading:
 
 At the **very top** of the file (above YAML frontmatter), insert the assessment block.
 
-- Follow the template in `config/templates/assessment-block.md` for ALL files
-- For 01-grade files, also append the template from `config/templates/action-brief-01.md`
-- For 02-grade files, also append the template from `config/templates/action-brief-02.md`
+- Follow the template `assessment-block.md` (check `playground/curator-templates/` first, fall back to `config/templates/`)
+- For 01-grade files, also append `action-brief-01.md` (same override logic)
+- For 02-grade files, also append `action-brief-02.md` (same override logic)
 
 *(Use file editing tools to safely prepend. DO NOT delete existing content!)*
 
@@ -118,7 +114,7 @@ Do NOT use Python scripts, AI rewrite, or rm+create to move files. Always `mv`.
 
 **CRITICAL REPORTING RULE**: Every physically moved file in this batch MUST appear in the report. The destination path in the report MUST exactly match the actual post-mv physical path and filename. If graded as D/E noise in the report, the file MUST physically be in `03_NOISE/`, never in the wrong folder.
 
-Follow the template in `config/templates/daily-digest.md`.
+Follow the template `daily-digest.md` (check `playground/curator-templates/` first, fall back to `config/templates/`).
 
 ---
 
