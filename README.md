@@ -114,11 +114,29 @@ Periodic lint scans detect contradictions, orphan pages, missing pages, thin pag
 
 ## Dependencies
 
-These skills are used by `curator:intake` but not bundled:
-- **web-content-fetcher** — Primary URL downloading (Scrapling-based)
-- **agent-browser** — Fallback for JS-heavy / anti-scraping sites
+> **Only `curator:intake` needs these.** All other skills (filter, compile, lint, feedback-loop) work without any external dependencies.
 
-Install them separately if you want full intake functionality.
+### 1. web-content-fetcher (primary URL downloader)
+
+```bash
+# Install the skill
+npx skills add https://github.com/shirenchuang/web-content-fetcher --skill web-content-fetcher
+
+# Install its Python dependencies
+pip install scrapling html2text
+```
+
+### 2. agent-browser (fallback for JS-heavy / anti-scraping sites)
+
+```bash
+# Install the CLI tool
+npm install -g agent-browser
+
+# Download a browser for automation (auto-detects existing Chrome/Brave)
+agent-browser install
+```
+
+`agent-browser` is optional — `web-content-fetcher` handles most sites. Only needed when a site blocks the primary fetcher (heavy JS rendering, CAPTCHAs, etc.).
 
 ## License
 
