@@ -1,0 +1,12 @@
+{
+  "name": "curator-marketplace",
+  "description": "LLM content curation pipeline — intake, grade, compile, lint, learn",
+  "plugins": [
+    {
+      "name": "curator",
+      "version": "1.0.0",
+      "description": "7-skill content curation pipeline with Admiralty grading, Obsidian wiki compilation, and human-in-the-loop learning",
+      "path": "."
+    }
+  ]
+}
