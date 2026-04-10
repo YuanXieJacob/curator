@@ -44,8 +44,8 @@ User reads digest        Drag-and-drop to correct AI mistakes
 ## Installation
 
 ```
-/plugin marketplace add YuanXieJacob/curator-plugin
-/plugin install curator@YuanXieJacob-curator-plugin
+/plugin marketplace add YuanXieJacob/curator
+/plugin install curator@YuanXieJacob-curator
 ```
 
 Then initialize your workspace:
@@ -55,24 +55,46 @@ Then initialize your workspace:
 
 ## Configuration
 
-All configuration lives in `skills/config/`:
+The plugin works **out of the box** with sensible defaults. All customization is optional.
 
-| File | What to Customize |
-|------|-------------------|
+### Plugin Defaults (in `skills/config/`)
+
+| File | What It Controls |
+|------|-----------------|
 | `topics.md` | Topic categories for filtering + Wiki dimension directories |
 | `action-tags.md` | Action labels assigned to high-value articles |
 | `admiralty-system.md` | Grading criteria (rarely needs changing) |
 | `paths.md` | Directory structure (only if you rename folders) |
 | `templates/` | Assessment blocks, digest format, pointer notes |
 
-Your personal settings live in `playground/`:
+### User Overrides (optional, survive plugin updates)
+
+To customize any config, copy it to your project and edit:
+
+```bash
+# Override topics
+cp <plugin>/skills/config/topics.md playground/curator-config/topics.md
+
+# Override a template
+cp <plugin>/skills/config/templates/daily-digest.md playground/curator-templates/daily-digest.md
+```
+
+| Override Location | Overrides |
+|------------------|-----------|
+| `playground/curator-config/<file>.md` | `skills/config/<file>.md` |
+| `playground/curator-templates/<file>.md` | `skills/config/templates/<file>.md` |
+
+Rule: **file exists → use it. Missing → use plugin default.**
+
+### User Data (accumulated, never touched by plugin updates)
 
 | File | Purpose |
 |------|---------|
-| `CURRENT_FOCUS.md` | Your active projects & watch signals (drives filtering) |
-| `SOURCE_REPUTATION.md` | Auto-maintained domain reputation ledger |
-| `05_SYSTEM_LEARNINGS.md` | Rules learned from your corrections |
-| `04_SUPERVISOR_FEEDBACK.md` | Quick correction table |
+| `playground/CURRENT_FOCUS.md` | Your active projects & watch signals (drives filtering) |
+| `playground/SOURCE_REPUTATION.md` | Auto-maintained domain reputation ledger |
+| `playground/05_SYSTEM_LEARNINGS.md` | Rules learned from your corrections |
+| `playground/04_SUPERVISOR_FEEDBACK.md` | Quick correction table |
+| `playground/wiki/` | Your Obsidian knowledge base |
 
 ## Key Features
 
