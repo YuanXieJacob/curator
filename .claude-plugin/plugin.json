@@ -1,11 +1,7 @@
 {
   "name": "curator",
-  "version": "1.0.0",
-  "description": "LLM-powered content curation pipeline: intake URLs, grade with Admiralty system, compile into Obsidian wiki, lint wiki health, and learn from human feedback. Inspired by Karpathy's LLM Wiki concept.",
+  "description": "LLM-powered content curation pipeline: intake URLs, grade with Admiralty system, compile into Obsidian wiki, lint wiki health, and learn from human feedback.",
   "author": {
     "name": "Jacob Xie"
-  },
-  "repository": "https://github.com/YuanXieJacob/curator",
-  "license": "MIT",
-  "keywords": ["curation", "knowledge-management", "obsidian", "wiki", "content-pipeline"]
+  }
 }

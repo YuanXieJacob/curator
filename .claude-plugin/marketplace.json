@@ -1,16 +1,16 @@
 {
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "curator-marketplace",
   "description": "LLM content curation pipeline — intake, grade, compile, lint, learn",
   "owner": {
-    "name": "Jacob Xie",
-    "url": "https://github.com/YuanXieJacob"
+    "name": "Jacob Xie"
   },
   "plugins": [
     {
       "name": "curator",
-      "version": "1.0.0",
       "description": "7-skill content curation pipeline with Admiralty grading, Obsidian wiki compilation, and human-in-the-loop learning",
-      "source": "."
+      "source": "./",
+      "homepage": "https://github.com/YuanXieJacob/curator"
     }
   ]
 }
